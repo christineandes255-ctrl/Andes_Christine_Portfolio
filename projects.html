@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Christine Andes - Projects - Technical Writing, Research, and Information System Projects">
+    <title>Projects - Christine Andes Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>">
+    <style>
+        :root {
+            /* Professional color palette */
+            --primary-color: #2c3e50; /* Navy blue */
+            --secondary-color: #3498db; /* Professional blue */
+            --accent-color: #1abc9c; /* Teal accent */
+            --text-color: #333333; /* Dark gray for text */
+            --light-bg: #f8f9fa; /* Light background */
+            --white: #ffffff;
+            --gray: #6c757d; /* Medium gray */
+            --dark-gray: #343a40; /* Dark gray */
+            --border-color: #e9ecef; /* Light border */
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--light-bg);
+        }
+
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus styles for accessibility */
+        a:focus,
+        button:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            z-index: 1001;
+            text-decoration: none;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--white);
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--white);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            margin: 3px 0;
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            position: relative;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        /* Filter Buttons */
+        .filter-container {
+            text-align: center;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+        }
+
+        .filter-btn {
+            background: var(--white);
+            border: 2px solid var(--secondary-color);
+            color: var(--text-color);
+            padding: 10px 20px;
+            margin: 0 5px 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-block;
+            font-family: inherit;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--secondary-color);
+            color: var(--white);
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            background: var(--white);
+            color: var(--secondary-color);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--white);
+        }
+
+        .project-link:hover {
+            background: var(--accent-color);
+            color: var(--white);
+            transform: scale(1.05);
+            border-color: var(--accent-color);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .project-description {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background: var(--light-bg);
+            color: var(--dark-gray);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .tag-technical { background: #e8f4fd; color: var(--secondary-color); border-left: 3px solid var(--secondary-color); }
+        .tag-writing { background: #e8f8f5; color: var(--accent-color); border-left: 3px solid var(--accent-color); }
+        .tag-research { background: #fef9e7; color: #d68910; border-left: 3px solid #d68910; }
+        .tag-latex { background: #eafaf1; color: #27ae60; border-left: 3px solid #27ae60; }
+        .tag-documentation { background: #f4ecf7; color: #8e44ad; border-left: 3px solid #8e44ad; }
+        .tag-capstone { background: #fdebd0; color: #e67e22; border-left: 3px solid #e67e22; }
+
+        .project-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-completed {
+            background: #e8f5e8;
+            color: #27ae60;
+        }
+
+        .status-progress {
+            background: #fff3cd;
+            color: #d68910;
+        }
+
+        .project-date {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            transition: var(--transition);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        .empty-state:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .empty-state h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .empty-state p {
+            color: var(--gray);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .empty-state a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .empty-state a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            * {
+                background: transparent !important;
+                color: black !important;
+                box-shadow: none !important;
+                text-shadow: none !important;
+            }
+            
+            nav, footer, .filter-container, .project-overlay, .empty-state {
+                display: none;
+            }
+            
+            body {
+                font-size: 12pt;
+                line-height: 1.4;
+            }
+            
+            .main-content {
+                padding-top: 20px;
+            }
+            
+            .container {
+                max-width: 100%;
+            }
+            
+            .project-card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+                margin-bottom: 20px;
+            }
+            
+            .project-image {
+                height: 150px;
+            }
+            
+            a::after {
+                content: " (" attr(href) ")";
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                padding: 2rem 0;
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu.active .nav-link {
+                color: var(--text-color);
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+                margin: 0 3px 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .page-header {
+                margin-bottom: 2rem;
+            }
+
+            .project-content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Christine Andes</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="resume.html" class="nav-link">Resume</a></li>
+                <li><a href="projects.html" class="nav-link active" aria-current="page">Projects</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">My Projects</h1>
+            <p class="page-subtitle">A showcase of my technical writing, research, and information system projects. Each project represents my dedication to clear communication and technical excellence.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="container">
+            <!-- Filter Buttons -->
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="technical">Technical Writing</button>
+                <button class="filter-btn" data-filter="research">Research</button>
+                <button class="filter-btn" data-filter="documentation">Documentation</button>
+                <button class="filter-btn" data-filter="capstone">Capstone</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-grid" id="projects-grid">
+                <!-- 
+                PROJECT TEMPLATE - UNCOMMENT AND CUSTOMIZE WHEN READY
+                
+                <div class="project-card" data-category="technical documentation">
+                    <div class="project-image">
+                        <img src="your-project-image.jpg" alt="Your Project Name">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link">View Details</a>
+                                <a href="#" class="project-link">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Your Project Title</h3>
+                        <p class="project-description">Your project description goes here. Describe what the project is about, technologies used, and your role in the project.</p>
+                        <div class="project-tags">
+                            <span class="tag tag-technical">Technical Writing</span>
+                            <span class="tag tag-latex">LaTeX</span>
+                            <span class="tag tag-documentation">Documentation</span>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge status-completed">Completed</span>
+                            <span class="project-date">Month Year</span>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div>
+
+            <!-- Empty State (shown when no projects) -->
+            <div class="empty-state" id="empty-state">
+                <div class="empty-state-icon">📝</div>
+                <h3>Projects Coming Soon</h3>
+                <p>I'm currently working on some exciting projects that will be showcased here soon. Check back later to see my latest work in technical writing and information systems.</p>
+                <p>In the meantime, feel free to explore my <a href="resume.html">resume</a> or <a href="contact.html">contact me</a> to discuss potential collaborations.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Christine Andes. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/tine.andes.24" target="_blank" class="social-link">Facebook</a>
+                <a href="https://www.instagram.com/christineandes24/" target="_blank" class="social-link">Instagram</a>
+                <a href="mailto:christineandes255@gmail.com" class="social-link">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            
+            // Update aria-expanded attribute for accessibility
+            const isExpanded = hamburger.classList.contains('active');
+            hamburger.setAttribute('aria-expanded', isExpanded);
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Project Filter Functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const emptyState = document.getElementById('empty-state');
+        const projectsGrid = document.getElementById('projects-grid');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        // Animation for project cards when they come into view
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe project cards for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            projectCards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+
+        // Filter projects based on category
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                let visibleProjects = 0;
+                
+                // Show/hide projects based on filter
+                projectCards.forEach(card => {
+                    const categories = card.getAttribute('data-category');
+                    if (filter === 'all' || categories.includes(filter)) {
+                        card.style.display = 'block';
+                        visibleProjects++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Show empty state if no projects match the filter
+                if (visibleProjects === 0) {
+                    emptyState.style.display = 'block';
+                    projectsGrid.style.display = 'none';
+                } else {
+                    emptyState.style.display = 'none';
+                    projectsGrid.style.display = 'grid';
+                }
+            });
+        });
+
+        // Function to add new projects dynamically
+        function addProject(title, description, category, tags, status, date, imageUrl, demoLink, githubLink) {
+            const projectCard = document.createElement('div');
+            projectCard.className = 'project-card';
+            projectCard.setAttribute('data-category', category);
+            
+            projectCard.innerHTML = `
+                <div class="project-image">
+                    ${imageUrl ? `<img src="${imageUrl}" alt="${title}">` : `<span>${title}</span>`}
+                    <div class="project-overlay">
+                        <div class="project-links">
+                            ${demoLink ? `<a href="${demoLink}" class="project-link">View Details</a>` : ''}
+                            ${githubLink ? `<a href="${githubLink}" class="project-link">GitHub</a>` : ''}
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">${title}</h3>
+                    <p class="project-description">${description}</p>
+                    <div class="project-tags">
+                        ${tags.map(tag => {
+                            const tagClass = tag.toLowerCase().replace(/\s+/g, '-');
+                            return `<span class="tag tag-${tagClass}">${tag}</span>`;
+                        }).join('')}
+                    </div>
+                    <div class="project-status">
+                        <span class="status-badge ${status === 'completed' ? 'status-completed' : 'status-progress'}">${status === 'completed' ? 'Completed' : 'In Progress'}</span>
+                        <span class="project-date">${date}</span>
+                    </div>
+                </div>
+            `;
+            
+            projectsGrid.appendChild(projectCard);
+            observer.observe(projectCard);
+            
+            // Hide empty state when projects are added
+            emptyState.style.display = 'none';
+            projectsGrid.style.display = 'grid';
+        }
+
+        // Example of how to add a project dynamically:
+        /*
+        addProject(
+            "Technical Writing Portfolio",
+            "A collection of technical documents, user manuals, and system documentation created for various academic projects.",
+            "technical writing documentation",
+            ["Technical Writing", "Documentation", "LaTeX"],
+            "completed",
+            "Jan 2025",
+            "project-image.jpg",
+            "project-details.html",
+            "https://github.com/yourusername/project"
+        );
+        */
+    </script>
+</body>
+</html>
